@@ -119,5 +119,3 @@ confirmarBtn.addEventListener("click", function () {
   });
 
 });
-
-<input type="hidden" name="_next" value="https://tudominio.com/#exito"></input>
