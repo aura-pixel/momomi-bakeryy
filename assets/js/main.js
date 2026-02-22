@@ -75,16 +75,19 @@ window.addEventListener("scroll", function () {
     let resumenHTML = "";
 
     formData.forEach((value, key) => {
-      if (value.trim() !== "") {
-        resumenHTML += `
-          <div class="resumen-item">
-            <span class="resumen-label">${formatearLabel(key)}</span>
-            <span class="resumen-valor">${value}</span>
-          </div>
-        `;
-      }
-    });
 
+  // Ignorar campos internos de FormSubmit
+  if (key.startsWith("_")) return;
+
+  if (value.trim() !== "") {
+    resumenHTML += `
+      <div class="resumen-item">
+        <span class="resumen-label">${formatearLabel(key)}</span>
+        <span class="resumen-valor">${value}</span>
+      </div>
+    `;
+  }
+});
     resumenContenido.innerHTML = resumenHTML;
 
     formStep.style.display = "none";
