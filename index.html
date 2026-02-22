@@ -238,16 +238,28 @@
 
 </section>
 
-
-<section id="pedido" class="formulario">
+  <section id="pedido" class="formulario">
   <div class="form-container">
 
     <div id="form-step" style="display:none;">
 
-  <h2>Haz tu pedido</h2>
-  <p class="form-sub">
-    Completa los siguientes datos y revisa tu solicitud antes de enviarla.
-  </p>
+      <h2>Haz tu pedido</h2>
+      <p class="form-sub">
+        Completa los siguientes datos y revisa tu solicitud antes de enviarla.
+      </p>
+
+      <form 
+        id="pedidoForm"
+        action="https://formsubmit.co/mitzukisayumi@gmail.com"
+        method="POST"
+      >
+
+        <!-- CONFIGURACIÓN FORMSUBMIT -->
+        <input type="hidden" name="_subject" value="Nuevo pedido Momomi 🍰">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://momomi-bakeryy.vercel.app/#exito">
+        <input type="text" name="_honey" style="display:none">
 
         <!-- BLOQUE 1 -->
         <div class="form-bloque">
@@ -259,85 +271,76 @@
         </div>
 
         <!-- BLOQUE 2 -->
-<div class="form-bloque">
-  <h3>Detalles del pedido</h3>
+        <div class="form-bloque">
+          <h3>Detalles del pedido</h3>
 
-  <!-- Tipo de producto -->
-  <select name="producto" required>
-    <option value="">Tipo de producto</option>
-    <option>Pastel</option>
-    <option>Mini cake</option>
-    <option>Galletas decoradas</option>
-    <option>Cupcakes</option>
-    <option>Vintage cake</option>
-  </select>
+          <select name="producto" required>
+            <option value="">Tipo de producto</option>
+            <option>Pastel</option>
+            <option>Mini cake</option>
+            <option>Galletas decoradas</option>
+            <option>Cupcakes</option>
+            <option>Vintage cake</option>
+          </select>
 
-  <!-- SABORES -->
-  <div class="grupo-opciones">
-    <label class="grupo-label">Sabor(es)</label>
-    <div class="opciones-check">
-      <label><input type="checkbox" name="sabor" value="Vainilla"> Vainilla</label>
-      <label><input type="checkbox" name="sabor" value="Chocolate"> Chocolate</label>
-      <label><input type="checkbox" name="sabor" value="Marmoleado"> Marmoleado</label>
-    </div>
-  </div>
+          <div class="grupo-opciones">
+            <label class="grupo-label">Sabor(es)</label>
+            <div class="opciones-check">
+              <label><input type="checkbox" name="sabor" value="Vainilla"> Vainilla</label>
+              <label><input type="checkbox" name="sabor" value="Chocolate"> Chocolate</label>
+              <label><input type="checkbox" name="sabor" value="Marmoleado"> Marmoleado</label>
+            </div>
+          </div>
 
-  <!-- TAMAÑO -->
-  <select name="tamano">
-    <option value="">Tamaño / Porciones</option>
-    <option>1 persona</option>
-    <option>6 personas</option>
-    <option>12 personas</option>
-    <option>20 personas</option>
-    <option>25 personas</option>
-    <option>30 personas</option>
-  </select>
+          <select name="tamano">
+            <option value="">Tamaño / Porciones</option>
+            <option>1 persona</option>
+            <option>6 personas</option>
+            <option>12 personas</option>
+            <option>20 personas</option>
+            <option>25 personas</option>
+            <option>30 personas</option>
+          </select>
 
-  <!-- RELLENO -->
-  <select name="relleno">
-    <option value="">Relleno</option>
+          <select name="relleno">
+            <option value="">Relleno</option>
+            <optgroup label="Mermeladas">
+              <option>Fresa</option>
+              <option>Frutos rojos</option>
+              <option>Zarzamora</option>
+              <option>Mora azul</option>
+              <option>Mango</option>
+              <option>Piña</option>
+            </optgroup>
+            <optgroup label="Especiales">
+              <option>Ganache de chocolate con chispas</option>
+              <option>Dulce de leche con nuez</option>
+            </optgroup>
+          </select>
 
-    <optgroup label="Mermeladas">
-      <option>Fresa</option>
-      <option>Frutos rojos</option>
-      <option>Zarzamora</option>
-      <option>Mora azul</option>
-      <option>Mango</option>
-      <option>Piña</option>
-    </optgroup>
+          <textarea 
+            name="diseno" 
+            placeholder="Describe tu diseño o temática..."></textarea>
 
-    <optgroup label="Especiales">
-      <option>Ganache de chocolate con chispas</option>
-      <option>Dulce de leche con nuez</option>
-    </optgroup>
-  </select>
+          <input 
+            type="text" 
+            name="mensaje" 
+            placeholder="Mensaje en el pastel (opcional)"
+          >
 
-  <!-- DISEÑO -->
-  <textarea 
-  name="diseno" 
-  placeholder="Describe tu diseño o temática (Ej: XV años, boda, anime, vintage, personalizado...)"></textarea>
+          <div class="campo-cantidad">
+            <input 
+              type="number" 
+              name="cantidad" 
+              min="1"
+              placeholder="Cantidad"
+            >
+            <small>
+              Solo necesario si deseas más de un producto.
+            </small>
+          </div>
 
-  <!-- MENSAJE -->
-  <input 
-    type="text" 
-    name="mensaje" 
-    placeholder="Mensaje en el pastel / Frases para galletas (opcional)"
-  >
-
-  <!-- CANTIDAD -->
-  <div class="campo-cantidad">
-    <input 
-      type="number" 
-      name="cantidad" 
-      min="1"
-      placeholder="Cantidad (Ej: 2 pasteles o 12 galletas)"
-    >
-    <small>
-      Solo necesario si deseas más de un producto o pedidos como galletas.
-    </small>
-  </div>
-
-</div>
+        </div>
 
         <!-- BLOQUE 3 -->
         <div class="form-bloque">
@@ -357,27 +360,14 @@
           <textarea name="notas" placeholder="Escribe aquí cualquier detalle extra..."></textarea>
         </div>
 
-      <form 
-  id="pedidoForm"
-  action="https://formsubmit.co/mitzukisayumi@gmail.com"
-  method="POST"
->
-
-  <input type="hidden" name="_subject" value="Nuevo pedido Momomi 🍰">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_captcha" value="true">
-  <input type="hidden" name="_next" value="https://momomi-bakeryy.vercel.app/#exito">
-  <input type="text" name="_honey" style="display:none">
-        
         <button type="submit" class="btn-enviar">
           Revisar pedido ✨
         </button>
 
       </form>
-
     </div>
-    
-    <!-- CONTENEDOR RESUMEN -->
+
+    <!-- RESUMEN -->
     <div id="resumen-step" style="display:none;">
       <div class="form-bloque">
         <h3>Revisa tu pedido</h3>
@@ -392,24 +382,20 @@
       </div>
     </div>
 
-    <!-- CONTENEDOR EXITO -->
+    <!-- ÉXITO -->
     <div id="exito-step" style="display:none;">
-  <div class="form-bloque exito">
-
-    <div class="exito-icono">
-  <img src="assets/img/momomi digital-18.png" alt="Momomi Bakery">
-</div>
-
-    <h3>¡Tu solicitud fue enviada con éxito!</h3>
-
-    <p>
-      Gracias por confiar en Momomi Bakery 🤍<br>
-      Muy pronto recibirás un correo para confirmar disponibilidad
-      y los detalles de tu pedido.
-    </p>
+      <div class="form-bloque exito">
+        <h3>¡Tu solicitud fue enviada con éxito!</h3>
+        <p>
+          Gracias por confiar en Momomi Bakery 🤍<br>
+          Muy pronto recibirás un correo para confirmar disponibilidad.
+        </p>
+      </div>
+    </div>
 
   </div>
 </section>
+
 
 <section class="redes">
   <div class="redes-container">
