@@ -92,7 +92,7 @@ Nuevo pedido Momomi 🍰
 👤 Nombre: ${nombre}
 📞 Teléfono: ${telefono}
 🧁 Producto: ${producto}
-🍫 Sabor: ${sabor}
+🍫 Sabor(es): ${sabores}
 📏 Tamaño: ${tamano}
 🍓 Relleno: ${relleno}
 🎨 Diseño: ${diseno}
