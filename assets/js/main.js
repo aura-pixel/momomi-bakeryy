@@ -70,7 +70,36 @@ window.addEventListener("scroll", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    const nombre = form.querySelector('[name="nombre"]').value;
+const producto = form.querySelector('[name="producto"]').value;
+
+const subjectInput = document.getElementById("dynamicSubject");
+subjectInput.value = `🍰 Nuevo pedido - ${producto} - ${nombre}`;
     const formData = new FormData(form);
+
+    const telefono = form.querySelector('[name="telefono"]').value;
+const sabor = form.querySelector('[name="sabor"]:checked')?.value || "No especificado";
+const tamano = form.querySelector('[name="tamano"]').value;
+const relleno = form.querySelector('[name="relleno"]').value;
+const diseno = form.querySelector('[name="diseno"]').value;
+const mensaje = form.querySelector('[name="mensaje"]').value;
+
+const mensajeCompleto = `
+Nuevo pedido Momomi 🍰
+
+👤 Nombre: ${nombre}
+📞 Teléfono: ${telefono}
+🧁 Producto: ${producto}
+🍫 Sabor: ${sabor}
+📏 Tamaño: ${tamano}
+🍓 Relleno: ${relleno}
+🎨 Diseño: ${diseno}
+💬 Mensaje: ${mensaje}
+
+Enviado desde la página web.
+`;
+
+document.getElementById("mensajeFinal").value = mensajeCompleto;
 
     let resumenHTML = "";
 
