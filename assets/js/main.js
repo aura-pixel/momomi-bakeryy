@@ -78,7 +78,9 @@ subjectInput.value = `🍰 Nuevo pedido - ${producto} - ${nombre}`;
     const formData = new FormData(form);
 
     const telefono = form.querySelector('[name="telefono"]').value;
-const sabor = form.querySelector('[name="sabor"]:checked')?.value || "No especificado";
+const sabores = [...form.querySelectorAll('[name="sabor"]:checked')]
+  .map(el => el.value)
+  .join(", ") || "No especificado";
 const tamano = form.querySelector('[name="tamano"]').value;
 const relleno = form.querySelector('[name="relleno"]').value;
 const diseno = form.querySelector('[name="diseno"]').value;
@@ -132,22 +134,17 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
 
   confirmarBtn.addEventListener("click", function () {
 
-    resumenStep.style.display = "none";
-    formStep.style.display = "none";
-    exitoStep.style.display = "block";
+  resumenStep.style.display = "none";
+  formStep.style.display = "none";
+  exitoStep.style.display = "block";
 
-    window.scrollTo({
-      top: document.getElementById("pedido").offsetTop - 80,
-      behavior: "smooth"
-    });
-
-    const confirmarBtn = document.getElementById("confirmarBtn");
-const pedidoForm = document.getElementById("pedidoForm");
-
-confirmarBtn.addEventListener("click", function () {
-  pedidoForm.submit(); // ENVÍA el formulario real
-});
-
+  window.scrollTo({
+    top: document.getElementById("pedido").offsetTop - 80,
+    behavior: "smooth"
   });
+
+  form.submit(); // ENVÍA el formulario real
+
+});
 
 });
