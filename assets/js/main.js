@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
       cantidad: "Cantidad",
       fecha: "Fecha de entrega",
       hora: "Hora",
-      notas: "Notas adicionales"
+      zona_entrega: "Zona de entrega",
+punto_entrega: "Punto de entrega",
+      notas: "Notas adicionales",
     };
 
     return labelsBonitos[label] || label;
