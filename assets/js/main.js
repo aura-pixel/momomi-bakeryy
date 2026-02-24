@@ -46,6 +46,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+  const zonaSelect = document.getElementById("zonaEntrega");
+const puntoSelect = document.getElementById("puntoEntrega");
+
+const puntosEntrega = {
+  "Centro": [
+    "Cosmovitral",
+    "Portales",
+    "Rectoría",
+    "Grand Plaza"
+  ],
+  "Calzada Pacífico": [
+    "Retorno Capultitlán"
+  ],
+  "Cacalomacán": [
+    "Capilla",
+    "Parroquia Asunción",
+    "Kiosko",
+    "Campo #1",
+    "3B antes Adelita"
+  ]
+};
+
+zonaSelect.addEventListener("change", function () {
+  const zona = this.value;
+
+  puntoSelect.innerHTML = "";
+  
+  if (!zona) {
+    puntoSelect.innerHTML = `<option value="">Selecciona primero la zona</option>`;
+    puntoSelect.disabled = true;
+    return;
+  }
+
+  puntoSelect.disabled = false;
+
+  puntoSelect.innerHTML = `<option value="">Selecciona punto de entrega</option>`;
+
+  puntosEntrega[zona].forEach(punto => {
+    const option = document.createElement("option");
+    option.value = punto;
+    option.textContent = punto;
+    puntoSelect.appendChild(option);
+  });
+});
 
 const header = document.querySelector(".header");
 
@@ -85,6 +129,8 @@ const tamano = form.querySelector('[name="tamano"]').value;
 const relleno = form.querySelector('[name="relleno"]').value;
 const diseno = form.querySelector('[name="diseno"]').value;
 const mensaje = form.querySelector('[name="mensaje"]').value;
+const zonaEntrega = form.querySelector('[name="zona_entrega"]').value;
+const puntoEntrega = form.querySelector('[name="punto_entrega"]').value;
 
 const mensajeCompleto = `
 Nuevo pedido Momomi 🍰
