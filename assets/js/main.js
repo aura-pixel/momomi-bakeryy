@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const confirmarBtn = document.getElementById("confirmarBtn");
   const pedidoSection = document.getElementById("pedido");
 
+  let confirmandoEnvio = false;
 
   function formatearLabel(label) {
     const labelsBonitos = {
@@ -114,6 +115,9 @@ window.addEventListener("scroll", function () {
   }
 });
   form.addEventListener("submit", function (e) {
+    if (confirmandoEnvio){
+      return;
+    }
     e.preventDefault();
 
     const nombre = form.querySelector('[name="nombre"]').value;
@@ -180,9 +184,11 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     exitoStep.style.display = "none";
   });
 
-  confirmarBtn.addEventListener("click", function () {
+ confirmarBtn.addEventListener("click", function () {
 
-  form.requestSubmit();
+  confirmandoEnvio = true;
+
+  form.submit(); // ahora sí envía real
 
 });
 
