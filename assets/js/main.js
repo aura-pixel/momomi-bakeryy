@@ -182,16 +182,11 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
 
   confirmarBtn.addEventListener("click", function () {
 
-  resumenStep.style.display = "none";
-  formStep.style.display = "none";
-  exitoStep.style.display = "block";
+  form.requestSubmit();
 
-  window.scrollTo({
-    top: document.getElementById("pedido").offsetTop - 80,
-    behavior: "smooth"
-  });
-
-  form.submit(); // ENVÍA el formulario real
+});
+  
+  form.requestSubmit();
 
 });
 
