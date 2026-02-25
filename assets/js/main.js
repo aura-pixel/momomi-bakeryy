@@ -185,9 +185,5 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
   form.requestSubmit();
 
 });
-  
-  form.requestSubmit();
-
-});
 
 });
