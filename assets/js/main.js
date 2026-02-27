@@ -202,7 +202,17 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     punto: form.querySelector('[name="punto_entrega"]').value,
     notas: form.querySelector('[name="notas"]').value,
   };
+   
+function mostrarToast(mensaje) {
+  const toast = document.getElementById("toast");
+  toast.textContent = mensaje;
+  toast.classList.add("show");
 
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 5000);
+}
+   
 emailjs.send("service_drgok6c", "template_ulmcnum", templateParams)
 .then(function(response) {
   console.log("SUCCESS!", response.status, response.text);
