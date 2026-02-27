@@ -186,9 +186,35 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
 
  confirmarBtn.addEventListener("click", function () {
 
-  confirmandoEnvio = true;
+  const templateParams = {
+    nombre: form.querySelector('[name="nombre"]').value,
+    telefono: form.querySelector('[name="telefono"]').value,
+    correo: form.querySelector('[name="correo"]').value,
+    producto: form.querySelector('[name="producto"]').value,
+    sabores: [...form.querySelectorAll('[name="sabor"]:checked')]
+      .map(el => el.value)
+      .join(", "),
+    tamano: form.querySelector('[name="tamano"]').value,
+    relleno: form.querySelector('[name="relleno"]').value,
+    diseno: form.querySelector('[name="diseno"]').value,
+    mensaje: form.querySelector('[name="mensaje"]').value,
+    zona: form.querySelector('[name="zona_entrega"]').value,
+    punto: form.querySelector('[name="punto_entrega"]').value,
+    notas: form.querySelector('[name="notas"]').value,
+  };
 
-  form.submit(); // ahora sí envía real
+  emailjs.send(service_drgok6c, template_ulmcnum, templateParams)
+    .then(function(response) {
+      console.log("SUCCESS!", response.status, response.text);
+
+      resumenStep.style.display = "none";
+      formStep.style.display = "none";
+      exitoStep.style.display = "block";
+
+    }, function(error) {
+      console.log("FAILED...", error);
+      alert("Hubo un error al enviar el pedido. Intenta nuevamente.");
+    });
 
 });
 
