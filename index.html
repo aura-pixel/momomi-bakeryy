@@ -369,26 +369,27 @@ Momomi Bakery 🍰">
 
   <!-- CAMPOS GENERALES -->
   <textarea 
-    name="diseno" 
-    placeholder="Describe tu diseño o temática..."></textarea>
+  name="diseno" 
+  placeholder="Describe tu diseño o temática..."></textarea>
 
+<input 
+  type="text" 
+  name="mensaje" 
+  id="campoMensaje"
+  placeholder="Mensaje en el pastel (opcional)"
+>
+
+<div class="campo-cantidad" id="campoCantidad">
   <input 
-    type="text" 
-    name="mensaje" 
-    placeholder="Mensaje en el pastel (opcional)"
+    type="number" 
+    name="cantidad" 
+    min="1"
+    placeholder="Cantidad"
   >
-
-  <div class="campo-cantidad">
-    <input 
-      type="number" 
-      name="cantidad" 
-      min="1"
-      placeholder="Cantidad"
-    >
-    <small>
-      Solo necesario si deseas más de un producto.
-    </small>
-  </div>
+  <small>
+    Solo necesario si deseas más de un producto.
+  </small>
+</div>
 
 </div>
 
