@@ -216,14 +216,20 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     exitoStep.style.display = "none";
   });
 
-  productoSelect.addEventListener("change", function () {
+  const campoMensaje = document.getElementById("campoMensaje");
+const campoCantidad = document.getElementById("campoCantidad");
+
+productoSelect.addEventListener("change", function () {
 
   if (this.value === "Galletas decoradas") {
 
     opcionesPastel.style.display = "none";
     opcionesGalletas.style.display = "block";
 
-    // Limpiar campos de pastel
+    campoMensaje.style.display = "none";
+    campoCantidad.style.display = "none";
+
+    // limpiar pastel
     document.querySelectorAll('[name="sabor"]').forEach(el => el.checked = false);
     document.querySelector('[name="tamano"]').value = "";
     document.querySelector('[name="relleno"]').value = "";
@@ -233,13 +239,14 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     opcionesPastel.style.display = "block";
     opcionesGalletas.style.display = "none";
 
-    // Limpiar campos de galletas
+    campoMensaje.style.display = "block";
+    campoCantidad.style.display = "block";
+
+    // limpiar galletas
     document.querySelectorAll('[name="kit_galletas"]').forEach(el => el.checked = false);
     const extra = document.querySelector('[name="galletas_extra"]');
     if (extra) extra.value = "";
 
-    descripcionKit.style.display = "none";
-textoKit.innerHTML = "";
   }
 
 });
