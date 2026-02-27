@@ -232,6 +232,8 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     zona: form.querySelector('[name="zona_entrega"]').value,
     punto: form.querySelector('[name="punto_entrega"]').value,
     notas: form.querySelector('[name="notas"]').value,
+    kit_galletas: form.querySelector('[name="kit_galletas"]:checked')?.value || "No aplica",
+galletas_extra: form.querySelector('[name="galletas_extra"]').value || "0",
   };
    
 function mostrarToast(mensaje) {
