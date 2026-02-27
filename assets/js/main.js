@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const productoSelect = document.getElementById("productoSelect");
 const opcionesPastel = document.getElementById("opciones-pastel");
 const opcionesGalletas = document.getElementById("opciones-galletas");
-
+const radiosKit = document.querySelectorAll('[name="kit_galletas"]');
+const descripcionKit = document.getElementById("descripcion-kit");
+const textoKit = document.getElementById("texto-kit");
+  
   let confirmandoEnvio = false;
 
   function formatearLabel(label) {
@@ -54,6 +57,30 @@ galletas_extra: "Galletas extra",
 
 });
 
+  radiosKit.forEach(radio => {
+  radio.addEventListener("change", function () {
+
+    descripcionKit.style.display = "block";
+
+    if (this.value === "Caja normal") {
+      textoKit.innerHTML = `
+        🎀 Entrega en caja de cartón blanca con ventana de acetato.<br>
+        Incluye 4 galletas de 9.5–10 cm decoradas según tu temática.<br>
+        Interior decorado con papel china en colores de la temática.
+      `;
+    }
+
+    if (this.value === "Kit personalizado") {
+      textoKit.innerHTML = `
+        🎨 Entrega en caja de madera 15x15 cm pintada a mano con personaje de tu temática.<br>
+        Incluye 4 galletas de 9.5–10 cm decoradas.<br>
+        Interior decorado con papel china en colores de la temática.
+      `;
+    }
+
+  });
+});
+  
   const zonaSelect = document.getElementById("zonaEntrega");
 const puntoSelect = document.getElementById("puntoEntrega");
 
@@ -211,6 +238,8 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     const extra = document.querySelector('[name="galletas_extra"]');
     if (extra) extra.value = "";
 
+    descripcionKit.style.display = "none";
+textoKit.innerHTML = "";
   }
 
 });
