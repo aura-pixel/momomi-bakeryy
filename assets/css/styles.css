@@ -979,3 +979,13 @@ select:focus {
   opacity: 1;
   transform: translateY(0);
 }
+
+.descripcion-kit {
+  background: #fff7f4;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 1.5;
+  color: #7a5c61;
+}
