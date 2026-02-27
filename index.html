@@ -269,117 +269,124 @@ Momomi Bakery 🍰">
 <input type="hidden" name="Resumen del pedido" id="mensajeFinal">
 
         <!-- BLOQUE 1 -->
-        <div class="form-bloque">
-          <h3>Datos del cliente</h3>
+<div class="form-bloque">
+  <h3>Datos del cliente</h3>
 
-          <input type="text" name="nombre" placeholder="Nombre completo" required>
-          <input type="tel" name="telefono" placeholder="Teléfono">
-          <input type="email" name="correo" placeholder="Correo electrónico" required>
-        </div>
+  <input type="text" name="nombre" placeholder="Nombre completo" required>
+  <input type="tel" name="telefono" placeholder="Teléfono">
+  <input type="email" name="correo" placeholder="Correo electrónico" required>
+</div>
 
-        <!-- BLOQUE 2 -->
-        <div class="form-bloque">
-          <h3>Detalles del pedido</h3>
+<!-- BLOQUE 2 -->
+<div class="form-bloque">
+  <h3>Detalles del pedido</h3>
 
-          <select name="producto" id="productoSelect" required>
-            <option value="">Tipo de producto</option>
-            <option>Pastel</option>
-            <option>Mini cake</option>
-            <option>Galletas decoradas</option>
-            <option>Cupcakes</option>
-            <option>Vintage cake</option>
-          </select>
+  <select name="producto" id="productoSelect" required>
+    <option value="">Tipo de producto</option>
+    <option>Pastel</option>
+    <option>Mini cake</option>
+    <option>Galletas decoradas</option>
+    <option>Cupcakes</option>
+    <option>Vintage cake</option>
+  </select>
 
-          <div id="opciones-pastel">
-          <div class="grupo-opciones">
-            <label class="grupo-label">Sabor(es)</label>
-            <div class="opciones-check">
-              <label><input type="checkbox" name="sabor" value="Vainilla"> Vainilla</label>
-              <label><input type="checkbox" name="sabor" value="Chocolate"> Chocolate</label>
-              <label><input type="checkbox" name="sabor" value="Marmoleado"> Marmoleado</label>
-            </div>
-          </div>
+  <!-- OPCIONES PARA PASTEL -->
+  <div id="opciones-pastel">
 
-          <select name="tamano">
-            <option value="">Tamaño / Porciones</option>
-            <option>1 persona</option>
-            <option>6 personas</option>
-            <option>12 personas</option>
-            <option>20 personas</option>
-            <option>25 personas</option>
-            <option>30 personas</option>
-          </select>
-
-          <select name="relleno">
-            <option value="">Relleno</option>
-            <optgroup label="Mermeladas">
-              <option>Fresa</option>
-              <option>Frutos rojos</option>
-              <option>Zarzamora</option>
-              <option>Mora azul</option>
-              <option>Mango</option>
-              <option>Piña</option>
-            </optgroup>
-            <optgroup label="Especiales">
-              <option>Ganache de chocolate con chispas</option>
-              <option>Dulce de leche con nuez</option>
-            </optgroup>
-          </select>
-            </div<
-                   <div id="opciones-galletas" style="display:none;">
-
-  <div class="grupo-opciones">
-    <label class="grupo-label">Tipo de kit</label>
-
-    <div class="opciones-check">
-      <label>
-        <input type="radio" name="kit_galletas" value="Caja normal">
-        Caja normal
-      </label>
-
-      <label>
-        <input type="radio" name="kit_galletas" value="Kit personalizado">
-        Kit personalizado (caja de madera)
-      </label>
+    <div class="grupo-opciones">
+      <label class="grupo-label">Sabor(es)</label>
+      <div class="opciones-check">
+        <label><input type="checkbox" name="sabor" value="Vainilla"> Vainilla</label>
+        <label><input type="checkbox" name="sabor" value="Chocolate"> Chocolate</label>
+        <label><input type="checkbox" name="sabor" value="Marmoleado"> Marmoleado</label>
+      </div>
     </div>
+
+    <select name="tamano">
+      <option value="">Tamaño / Porciones</option>
+      <option>1 persona</option>
+      <option>6 personas</option>
+      <option>12 personas</option>
+      <option>20 personas</option>
+      <option>25 personas</option>
+      <option>30 personas</option>
+    </select>
+
+    <select name="relleno">
+      <option value="">Relleno</option>
+      <optgroup label="Mermeladas">
+        <option>Fresa</option>
+        <option>Frutos rojos</option>
+        <option>Zarzamora</option>
+        <option>Mora azul</option>
+        <option>Mango</option>
+        <option>Piña</option>
+      </optgroup>
+      <optgroup label="Especiales">
+        <option>Ganache de chocolate con chispas</option>
+        <option>Dulce de leche con nuez</option>
+      </optgroup>
+    </select>
+
   </div>
+
+  <!-- OPCIONES PARA GALLETAS -->
+  <div id="opciones-galletas" style="display:none;">
+
+    <div class="grupo-opciones">
+      <label class="grupo-label">Tipo de kit</label>
+
+      <div class="opciones-check">
+        <label>
+          <input type="radio" name="kit_galletas" value="Caja normal">
+          Caja normal
+        </label>
+
+        <label>
+          <input type="radio" name="kit_galletas" value="Kit personalizado">
+          Kit personalizado (caja de madera)
+        </label>
+      </div>
+    </div>
+
+    <div class="campo-cantidad">
+      <input 
+        type="number" 
+        name="galletas_extra" 
+        min="0"
+        placeholder="Galletas extra (opcional)"
+      >
+      <small>
+        Puedes agregar galletas adicionales con costo extra.
+      </small>
+    </div>
+
+  </div>
+
+  <!-- CAMPOS GENERALES -->
+  <textarea 
+    name="diseno" 
+    placeholder="Describe tu diseño o temática..."></textarea>
+
+  <input 
+    type="text" 
+    name="mensaje" 
+    placeholder="Mensaje en el pastel (opcional)"
+  >
 
   <div class="campo-cantidad">
     <input 
       type="number" 
-      name="galletas_extra" 
-      min="0"
-      placeholder="Galletas extra (opcional)"
+      name="cantidad" 
+      min="1"
+      placeholder="Cantidad"
     >
     <small>
-      Puedes agregar galletas adicionales con costo extra.
+      Solo necesario si deseas más de un producto.
     </small>
   </div>
 
 </div>
-          <textarea 
-            name="diseno" 
-            placeholder="Describe tu diseño o temática..."></textarea>
-
-          <input 
-            type="text" 
-            name="mensaje" 
-            placeholder="Mensaje en el pastel (opcional)"
-          >
-
-          <div class="campo-cantidad">
-            <input 
-              type="number" 
-              name="cantidad" 
-              min="1"
-              placeholder="Cantidad"
-            >
-            <small>
-              Solo necesario si deseas más de un producto.
-            </small>
-          </div>
-
-        </div>
 
         <!-- BLOQUE 3 -->
         <div class="form-bloque">
