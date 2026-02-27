@@ -281,7 +281,7 @@ Momomi Bakery 🍰">
         <div class="form-bloque">
           <h3>Detalles del pedido</h3>
 
-          <select name="producto" required>
+          <select name="producto" id="productoSelect" required>
             <option value="">Tipo de producto</option>
             <option>Pastel</option>
             <option>Mini cake</option>
@@ -290,6 +290,7 @@ Momomi Bakery 🍰">
             <option>Vintage cake</option>
           </select>
 
+          <div id="opciones-pastel">
           <div class="grupo-opciones">
             <label class="grupo-label">Sabor(es)</label>
             <div class="opciones-check">
@@ -324,7 +325,38 @@ Momomi Bakery 🍰">
               <option>Dulce de leche con nuez</option>
             </optgroup>
           </select>
+            </div<
+                   <div id="opciones-galletas" style="display:none;">
 
+  <div class="grupo-opciones">
+    <label class="grupo-label">Tipo de kit</label>
+
+    <div class="opciones-check">
+      <label>
+        <input type="radio" name="kit_galletas" value="Caja normal">
+        Caja normal
+      </label>
+
+      <label>
+        <input type="radio" name="kit_galletas" value="Kit personalizado">
+        Kit personalizado (caja de madera)
+      </label>
+    </div>
+  </div>
+
+  <div class="campo-cantidad">
+    <input 
+      type="number" 
+      name="galletas_extra" 
+      min="0"
+      placeholder="Galletas extra (opcional)"
+    >
+    <small>
+      Puedes agregar galletas adicionales con costo extra.
+    </small>
+  </div>
+
+</div>
           <textarea 
             name="diseno" 
             placeholder="Describe tu diseño o temática..."></textarea>
