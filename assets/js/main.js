@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const editarBtn = document.getElementById("editarBtn");
   const confirmarBtn = document.getElementById("confirmarBtn");
   const pedidoSection = document.getElementById("pedido");
+  const productoSelect = document.getElementById("productoSelect");
+const opcionesPastel = document.getElementById("opciones-pastel");
+const opcionesGalletas = document.getElementById("opciones-galletas");
 
   let confirmandoEnvio = false;
 
@@ -28,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
       zona_entrega: "Zona de entrega",
 punto_entrega: "Punto de entrega",
       notas: "Notas adicionales",
+      kit_galletas: "Tipo de kit",
+galletas_extra: "Galletas extra",
     };
 
     return labelsBonitos[label] || label;
@@ -184,6 +189,32 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     exitoStep.style.display = "none";
   });
 
+  productoSelect.addEventListener("change", function () {
+
+  if (this.value === "Galletas decoradas") {
+
+    opcionesPastel.style.display = "none";
+    opcionesGalletas.style.display = "block";
+
+    // Limpiar campos de pastel
+    document.querySelectorAll('[name="sabor"]').forEach(el => el.checked = false);
+    document.querySelector('[name="tamano"]').value = "";
+    document.querySelector('[name="relleno"]').value = "";
+
+  } else {
+
+    opcionesPastel.style.display = "block";
+    opcionesGalletas.style.display = "none";
+
+    // Limpiar campos de galletas
+    document.querySelectorAll('[name="kit_galletas"]').forEach(el => el.checked = false);
+    const extra = document.querySelector('[name="galletas_extra"]');
+    if (extra) extra.value = "";
+
+  }
+
+});
+  
  confirmarBtn.addEventListener("click", function () {
 
   const templateParams = {
