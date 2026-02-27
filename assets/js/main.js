@@ -203,7 +203,7 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     notas: form.querySelector('[name="notas"]').value,
   };
 
-  emailjs.send(service_drgok6c, template_ulmcnum, templateParams)
+  emailjs.send("service_drgok6c", "template_ulmcnum", templateParams)
     .then(function(response) {
       console.log("SUCCESS!", response.status, response.text);
 
