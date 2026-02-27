@@ -203,18 +203,25 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
     notas: form.querySelector('[name="notas"]').value,
   };
 
-  emailjs.send("service_drgok6c", "template_ulmcnum", templateParams)
-    .then(function(response) {
-      console.log("SUCCESS!", response.status, response.text);
+emailjs.send("service_drgok6c", "template_ulmcnum", templateParams)
+.then(function(response) {
+  console.log("SUCCESS!", response.status, response.text);
 
-      resumenStep.style.display = "none";
-      formStep.style.display = "none";
-      exitoStep.style.display = "block";
+  // 👉 Enviar auto-reply al cliente
+  return emailjs.send("service_drgok6c", "template_4hbi2no", templateParams);
+})
+.then(function(response) {
+  console.log("AUTO-REPLY SENT!", response.status, response.text);
 
-    }, function(error) {
-      console.log("FAILED...", error);
-      alert("Hubo un error al enviar el pedido. Intenta nuevamente.");
-    });
+  resumenStep.style.display = "none";
+  formStep.style.display = "none";
+  exitoStep.style.display = "block";
+
+})
+.catch(function(error) {
+  console.log("FAILED...", error);
+  mostrarToast("Hubo un error al enviar el pedido 💔 Intenta nuevamente.");
+});
 
 });
 
