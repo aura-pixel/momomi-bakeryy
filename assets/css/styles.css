@@ -989,3 +989,109 @@ select:focus {
   line-height: 1.5;
   color: #7a5c61;
 }
+
+/* ========================= */
+/* 📱 MOBILE FIX GENERAL */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  /* HEADER */
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn-hero {
+    padding: 14px 25px;
+    font-size: 0.95rem;
+  }
+
+  /* SECCIONES */
+  .sobre,
+  .servicios,
+  .galeria,
+  .como,
+  .cta {
+    padding: 60px 20px;
+  }
+
+  .sobre-texto h2,
+  .servicios h2,
+  .galeria h2,
+  .como h2,
+  .cta h2 {
+    font-size: 1.8rem;
+  }
+
+  /* CARDS */
+  .servicio-card {
+    max-width: 100%;
+  }
+
+  /* FORMULARIO */
+  .formulario {
+    padding: 80px 15px;
+  }
+
+  .form-bloque {
+    padding: 25px 20px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+
+  /* BOTONES */
+  .btn-enviar,
+  .btn-cta,
+  .btn-instagram {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* RESUMEN */
+  .resumen-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .resumen-valor {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  /* FOOTER */
+  .footer-main {
+    padding: 20px;
+  }
+
+  .momomi-logo {
+    width: 140px;
+  }
+
+}
