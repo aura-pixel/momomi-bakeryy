@@ -1,24 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  // =========================
+  // 📦 ELEMENTOS
+  // =========================
   const form = document.getElementById("pedidoForm");
   const formStep = document.getElementById("form-step");
   const resumenStep = document.getElementById("resumen-step");
   const exitoStep = document.getElementById("exito-step");
+
   const resumenContenido = document.getElementById("resumen-contenido");
+
+  const pedidoSection = document.getElementById("pedido");
+
   const editarBtn = document.getElementById("editarBtn");
   const confirmarBtn = document.getElementById("confirmarBtn");
-  const pedidoSection = document.getElementById("pedido");
-  const productoSelect = document.getElementById("productoSelect");
-const opcionesPastel = document.getElementById("opciones-pastel");
-const opcionesGalletas = document.getElementById("opciones-galletas");
-const radiosKit = document.querySelectorAll('[name="kit_galletas"]');
-const descripcionKit = document.getElementById("descripcion-kit");
-const textoKit = document.getElementById("texto-kit");
-  
-  let confirmandoEnvio = false;
 
+  const header = document.querySelector(".header");
+
+  // =========================
+  // 🧠 LABELS BONITOS
+  // =========================
   function formatearLabel(label) {
-    const labelsBonitos = {
+    const labels = {
       nombre: "Nombre",
       telefono: "Teléfono",
       correo: "Correo electrónico",
@@ -27,172 +30,80 @@ const textoKit = document.getElementById("texto-kit");
       tamano: "Tamaño / Porciones",
       relleno: "Relleno",
       diseno: "Diseño / Temática",
-      mensaje: "Mensaje en el pastel",
+      mensaje: "Mensaje",
       cantidad: "Cantidad",
       fecha: "Fecha de entrega",
       hora: "Hora",
-      zona_entrega: "Zona de entrega",
-punto_entrega: "Punto de entrega",
       notas: "Notas adicionales",
       kit_galletas: "Tipo de kit",
-galletas_extra: "Galletas extra",
+      zona_entrega: "Zona de entrega",
+      punto_entrega: "Punto de entrega",
+      galletas_extra: "Galletas extra"
     };
-
-    return labelsBonitos[label] || label;
+    return labels[label] || label;
   }
 
+  // =========================
+  // 🚀 ABRIR FORMULARIO
+  // =========================
   const abrirFormularioBtn = document.getElementById("abrirFormulario");
 
+if (abrirFormularioBtn) {
   abrirFormularioBtn.addEventListener("click", function () {
-
-  pedidoSection.classList.add("activo");
-
-  formStep.style.display = "block";
-  resumenStep.style.display = "none";
-  exitoStep.style.display = "none";
-
-  pedidoSection.scrollIntoView({
-    behavior: "smooth"
+    window.scrollTo({
+      top: pedidoSection.offsetTop - 80,
+      behavior: "smooth"
+    });
   });
+}
 
-});
+  // =========================
+  // 📜 HEADER SCROLL
+  // =========================
+  window.addEventListener("scroll", function () {
+    header.classList.toggle("scrolled", window.scrollY > 40);
 
-  radiosKit.forEach(radio => {
-  radio.addEventListener("change", function () {
+    const pedidoTop = pedidoSection.offsetTop - 120;
+    const pedidoBottom = pedidoTop + pedidoSection.offsetHeight;
 
-    descripcionKit.style.display = "block";
-
-    if (this.value === "Caja normal") {
-      textoKit.innerHTML = `
-        🎀 Entrega en caja de cartón blanca con ventana de acetato.<br>
-        Incluye 4 galletas de 9.5–10 cm decoradas según tu temática.<br>
-        Interior decorado con papel china en colores de la temática.
-      `;
+    if (window.scrollY >= pedidoTop && window.scrollY < pedidoBottom) {
+      header.classList.add("rosa");
+    } else {
+      header.classList.remove("rosa");
     }
-
-    if (this.value === "Kit personalizado") {
-      textoKit.innerHTML = `
-        🎨 Entrega en caja de madera 15x15 cm pintada a mano con personaje de tu temática.<br>
-        Incluye 4 galletas de 9.5–10 cm decoradas.<br>
-        Interior decorado con papel china en colores de la temática.
-      `;
-    }
-
   });
-});
-  
-  const zonaSelect = document.getElementById("zonaEntrega");
-const puntoSelect = document.getElementById("puntoEntrega");
 
-const puntosEntrega = {
-  "Centro": [
-    "Cosmovitral",
-    "Portales",
-    "Rectoría",
-    "Grand Plaza"
-  ],
-  "Calzada Pacífico": [
-    "Retorno Capultitlán"
-  ],
-  "Cacalomacán": [
-    "Capilla",
-    "Parroquia Asunción",
-    "Kiosko",
-    "Campo #1",
-    "3B antes Adelita"
-  ]
-};
-
-zonaSelect.addEventListener("change", function () {
-  const zona = this.value;
-
-  puntoSelect.innerHTML = "";
-  
-  if (!zona) {
-    puntoSelect.innerHTML = `<option value="">Selecciona primero la zona</option>`;
-    puntoSelect.disabled = true;
-    return;
-  }
-
-  puntoSelect.disabled = false;
-
-  puntoSelect.innerHTML = `<option value="">Selecciona punto de entrega</option>`;
-
-  puntosEntrega[zona].forEach(punto => {
-    const option = document.createElement("option");
-    option.value = punto;
-    option.textContent = punto;
-    puntoSelect.appendChild(option);
-  });
-});
-
-const header = document.querySelector(".header");
-
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 40) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-
-window.addEventListener("scroll", function () {
-  const pedidoTop = pedidoSection.offsetTop - 120;
-  const pedidoBottom = pedidoTop + pedidoSection.offsetHeight;
-
-  if (window.scrollY >= pedidoTop && window.scrollY < pedidoBottom) {
-    header.classList.add("rosa");
-  } else {
-    header.classList.remove("rosa");
-  }
-});
+  // =========================
+  // 🧾 GENERAR RESUMEN
+  // =========================
   form.addEventListener("submit", function (e) {
-    if (confirmandoEnvio){
-      return;
-    }
     e.preventDefault();
 
-    const nombre = form.querySelector('[name="nombre"]').value;
-const producto = form.querySelector('[name="producto"]').value;
-
-const subjectInput = document.getElementById("dynamicSubject");
-subjectInput.value = `🍰 Nuevo pedido - ${producto} - ${nombre}`;
     const formData = new FormData(form);
-
-    const telefono = form.querySelector('[name="telefono"]').value;
-const sabores = [...form.querySelectorAll('[name="sabor"]:checked')]
-  .map(el => el.value)
-  .join(", ") || "No especificado";
-const tamano = form.querySelector('[name="tamano"]').value;
-const relleno = form.querySelector('[name="relleno"]').value;
-const diseno = form.querySelector('[name="diseno"]').value;
-const mensaje = form.querySelector('[name="mensaje"]').value;
-const zonaEntrega = form.querySelector('[name="zona_entrega"]').value;
-const puntoEntrega = form.querySelector('[name="punto_entrega"]').value;
-
-const mensajeCompleto = `
-Nuevo pedido Momomi 🍰
-
-👤 Nombre: ${nombre}
-📞 Teléfono: ${telefono}
-🧁 Producto: ${producto}
-🍫 Sabor(es): ${sabores}
-📏 Tamaño: ${tamano}
-🍓 Relleno: ${relleno}
-🎨 Diseño: ${diseno}
-💬 Mensaje: ${mensaje}
-
-Enviado desde la página web.
-`;
-
-document.getElementById("mensajeFinal").value = mensajeCompleto;
-
     let resumenHTML = "";
+
+    const sabores = [];
+    document.querySelectorAll('input[name="sabor"]:checked').forEach(el => {
+      sabores.push(el.value);
+    });
+
+    if (sabores.length > 0) {
+      resumenHTML += `
+        <div class="resumen-item">
+          <span class="resumen-label">Sabor(es)</span>
+          <span class="resumen-valor">${sabores.join(", ")}</span>
+        </div>
+      `;
+    }
 
     formData.forEach((value, key) => {
 
-  // Ignorar campos internos de FormSubmit
-  if (key.startsWith("_")) return;
+  // ❌ ignorar campos internos
+  if (
+    key.startsWith("_") || 
+    key === "sabor" || 
+    key === "mensajeFinal"
+  ) return;
 
   if (value.trim() !== "") {
     resumenHTML += `
@@ -202,106 +113,128 @@ document.getElementById("mensajeFinal").value = mensajeCompleto;
       </div>
     `;
   }
+
 });
+
     resumenContenido.innerHTML = resumenHTML;
 
     formStep.style.display = "none";
     resumenStep.style.display = "block";
-    exitoStep.style.display = "none";
   });
 
-  editarBtn.addEventListener("click", function () {
+  // =========================
+  // ✏️ EDITAR
+  // =========================
+  editarBtn.addEventListener("click", () => {
     resumenStep.style.display = "none";
     formStep.style.display = "block";
-    exitoStep.style.display = "none";
   });
 
-  const campoMensaje = document.getElementById("campoMensaje");
-const campoCantidad = document.getElementById("campoCantidad");
+  // =========================
+  // ✅ CONFIRMAR
+  // =========================
+  confirmarBtn.addEventListener("click", () => {
 
-productoSelect.addEventListener("change", function () {
+    document.getElementById("mensajeFinal").value =
+      resumenContenido.innerText;
 
-  if (this.value === "Galletas decoradas") {
+    form.submit();
 
-    opcionesPastel.style.display = "none";
-    opcionesGalletas.style.display = "block";
+    resumenStep.style.display = "none";
+    formStep.style.display = "none";
+    exitoStep.style.display = "block";
 
-    campoMensaje.style.display = "none";
-    campoCantidad.style.display = "none";
+    window.scrollTo({
+      top: pedidoSection.offsetTop - 80,
+      behavior: "smooth"
+    });
+  });
 
-    // limpiar pastel
-    document.querySelectorAll('[name="sabor"]').forEach(el => el.checked = false);
-    document.querySelector('[name="tamano"]').value = "";
-    document.querySelector('[name="relleno"]').value = "";
+  // =========================
+  // 📱 MENU MOBILE
+  // =========================
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav");
 
-  } else {
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+  });
 
-    opcionesPastel.style.display = "block";
-    opcionesGalletas.style.display = "none";
+  // =========================
+  // 🎂 CAMBIO PRODUCTO
+  // =========================
+  const productoSelect = document.getElementById("productoSelect");
+  const opcionesPastel = document.getElementById("opciones-pastel");
+  const opcionesGalletas = document.getElementById("opciones-galletas");
 
-    campoMensaje.style.display = "block";
-    campoCantidad.style.display = "block";
+  productoSelect.addEventListener("change", function () {
 
-    // limpiar galletas
-    document.querySelectorAll('[name="kit_galletas"]').forEach(el => el.checked = false);
-    const extra = document.querySelector('[name="galletas_extra"]');
-    if (extra) extra.value = "";
+    if (this.value === "Galletas decoradas") {
+      opcionesPastel.style.display = "none";
+      opcionesGalletas.style.display = "block";
+    } else {
+      opcionesPastel.style.display = "block";
+      opcionesGalletas.style.display = "none";
+    }
 
-  }
+  });
 
-});
-  
- confirmarBtn.addEventListener("click", function () {
+  // =========================
+  // 🍪 KIT GALLETAS
+  // =========================
+  const radiosKit = document.querySelectorAll('input[name="kit_galletas"]');
+  const descripcionKit = document.getElementById("descripcion-kit");
+  const textoKit = document.getElementById("texto-kit");
 
-  const templateParams = {
-    nombre: form.querySelector('[name="nombre"]').value,
-    telefono: form.querySelector('[name="telefono"]').value,
-    correo: form.querySelector('[name="correo"]').value,
-    producto: form.querySelector('[name="producto"]').value,
-    sabores: [...form.querySelectorAll('[name="sabor"]:checked')]
-      .map(el => el.value)
-      .join(", "),
-    tamano: form.querySelector('[name="tamano"]').value,
-    relleno: form.querySelector('[name="relleno"]').value,
-    diseno: form.querySelector('[name="diseno"]').value,
-    mensaje: form.querySelector('[name="mensaje"]').value,
-    zona: form.querySelector('[name="zona_entrega"]').value,
-    punto: form.querySelector('[name="punto_entrega"]').value,
-    notas: form.querySelector('[name="notas"]').value,
-    kit_galletas: form.querySelector('[name="kit_galletas"]:checked')?.value || "No aplica",
-galletas_extra: form.querySelector('[name="galletas_extra"]').value || "0",
+  radiosKit.forEach(radio => {
+    radio.addEventListener("change", function () {
+
+      descripcionKit.style.display = "block";
+
+      if (this.value === "Caja normal") {
+        textoKit.textContent = "Incluye galletas decoradas listas para regalar 🎁";
+      }
+
+      if (this.value === "Kit personalizado") {
+        textoKit.textContent = "Incluye caja de madera, pinturas, pincel y galletas para decorar 🎨";
+      }
+
+    });
+  });
+
+  // =========================
+  // 📍 ZONA ENTREGA
+  // =========================
+  const zonaEntrega = document.getElementById("zonaEntrega");
+  const puntoEntrega = document.getElementById("puntoEntrega");
+
+  const puntos = {
+    "Centro": ["Los Portales", "Alameda", "Catedral"],
+    "Calzada Pacífico": ["Oxxo Pacífico", "Bodega Aurrera"],
+    "Cacalomacán": ["Centro Cacalomacán", "Iglesia principal"]
   };
-   
-function mostrarToast(mensaje) {
-  const toast = document.getElementById("toast");
-  toast.textContent = mensaje;
-  toast.classList.add("show");
 
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 5000);
-}
-   
-emailjs.send("service_drgok6c", "template_ulmcnum", templateParams)
-.then(function(response) {
-  console.log("SUCCESS!", response.status, response.text);
+  zonaEntrega.addEventListener("change", function () {
 
-  // 👉 Enviar auto-reply al cliente
-  return emailjs.send("service_drgok6c", "template_4hbi2no", templateParams);
-})
-.then(function(response) {
-  console.log("AUTO-REPLY SENT!", response.status, response.text);
+    const zona = this.value;
 
-  resumenStep.style.display = "none";
-  formStep.style.display = "none";
-  exitoStep.style.display = "block";
+    puntoEntrega.innerHTML =
+      '<option value="">Selecciona punto de entrega</option>';
 
-})
-.catch(function(error) {
-  console.log("FAILED...", error);
-  mostrarToast("Hubo un error al enviar el pedido 💔 Intenta nuevamente.");
-});
+    if (puntos[zona]) {
+      puntoEntrega.disabled = false;
 
-});
+      puntos[zona].forEach(punto => {
+        const option = document.createElement("option");
+        option.value = punto;
+        option.textContent = punto;
+        puntoEntrega.appendChild(option);
+      });
+
+    } else {
+      puntoEntrega.disabled = true;
+    }
+
+  });
 
 });
