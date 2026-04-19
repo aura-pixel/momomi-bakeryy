@@ -133,22 +133,43 @@ if (abrirFormularioBtn) {
   // =========================
   // ✅ CONFIRMAR
   // =========================
-  confirmarBtn.addEventListener("click", () => {
+  confirmarBtn.addEventListener("click", function (e) {
 
-    document.getElementById("mensajeFinal").value =
-      resumenContenido.innerText;
+  e.preventDefault(); // 🔥 clave
 
-    form.submit();
+  document.getElementById("mensajeFinal").value =
+    resumenContenido.innerText;
 
-    resumenStep.style.display = "none";
-    formStep.style.display = "none";
-    exitoStep.style.display = "block";
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
 
-    window.scrollTo({
-      top: pedidoSection.offsetTop - 80,
-      behavior: "smooth"
-    });
+    if (response.ok) {
+
+      resumenStep.style.display = "none";
+      formStep.style.display = "none";
+      exitoStep.style.display = "block";
+
+      window.scrollTo({
+        top: document.getElementById("exito-step").offsetTop - 80,
+        behavior: "smooth"
+      });
+
+    } else {
+      throw new Error("Error en envío");
+    }
+
+  })
+  .catch(() => {
+    alert("Hubo un error al enviar el pedido 😢");
   });
+
+});
 
   // =========================
   // 📱 MENU MOBILE
