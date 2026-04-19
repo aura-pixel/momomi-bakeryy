@@ -1130,6 +1130,79 @@ html {
 
 }
 
+@media (max-width: 600px) {
+
+  /* 🧠 TEXTO GENERAL */
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* 📦 CONTENEDORES */
+  .container,
+  .form-container {
+    width: 92%;
+  }
+
+  /* 🧁 HERO */
+  .hero-content {
+    padding: 0 10px;
+  }
+
+  /* 🔘 BOTONES */
+  .btn-hero,
+  .btn-cta,
+  .btn-enviar {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+  }
+
+  /* 📋 FORMULARIO (MUY IMPORTANTE) */
+  input, select, textarea {
+    padding: 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .form-bloque {
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+
+  /* 📊 RESUMEN BOTONES */
+  .resumen-botones {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* 🧁 CARDS SERVICIOS */
+  .servicio-card {
+    padding: 25px;
+  }
+
+  /* 🧠 SOBRE */
+  .sobre-container {
+    gap: 30px;
+  }
+
+}
 
 
 
