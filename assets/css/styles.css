@@ -1039,3 +1039,15 @@ img {
 html {
   scroll-behavior: smooth;
 }
+
+.exito-icono {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.exito-icono img {
+  width: 180px;       /* 👈 ajusta aquí el tamaño */
+  max-width: 70%;
+  height: auto;
+}
