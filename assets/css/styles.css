@@ -909,7 +909,7 @@ textarea {
 
 /* TEXTO */
 .footer p {
-  color: #00000000;
+  color: #582c21;
 }
 
 
@@ -1072,3 +1072,64 @@ html {
   max-width: 70%;
   height: auto;
 }
+
+@media (max-width: 768px) {
+
+  .header-container {
+    width: 95%;
+  }
+
+  .logo img {
+    width: 45px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: 500px;
+    padding: 40px 15px;
+  }
+
+  .btn-hero {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .form-container {
+    width: 100%;
+  }
+
+  .form-bloque {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  input, select, textarea {
+    font-size: 1rem;
+    padding: 14px;
+  }
+
+  .btn-enviar {
+    width: 100%;
+    padding: 16px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .resumen-botones {
+    flex-direction: column;
+  }
+
+}
+
+
+
+
